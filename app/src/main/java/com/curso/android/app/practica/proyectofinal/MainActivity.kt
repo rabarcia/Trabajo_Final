@@ -1,5 +1,6 @@
 package com.curso.android.app.practica.proyectofinal
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -13,24 +14,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         this.binding = ActivityMainBinding.inflate(this.layoutInflater)
         this.setContentView(this.binding.root)
-        this.binding.button.setOnClickListener{ this.compareText(
-            this.binding.text.text,
-            this.binding.text1.text )}
+        this.binding.button.setOnClickListener { this.compareText() }
 
     }
-    private fun compareText(texto1:string) {
-        if (texto1.isBlank() or texto2.isBlank())
-        {
+
+    private fun compareText() {
+        val texto: String = binding.text.text.toString()
+        val texto1: String = binding.text1.text.toString()
+        if (texto.isBlank() or texto1.isBlank()) {
             this.binding.textView2.text = ""
-               return
-        }
-        if (texto1 == texto2)
-        {
-            "Los textos son iguales".also { this.binding.textView2.text = it }
             return
         }
-        this.binding.textView2.text = buildString {
-            this.append("Los textos No son iguales")
-    }
+        if (texto == texto1) {
+            this.binding.textView2.text = "Los textos son iguales"
+            return
+        }
+        this.binding.textView2.text = "Los textos No son iguales"
     }
 }
